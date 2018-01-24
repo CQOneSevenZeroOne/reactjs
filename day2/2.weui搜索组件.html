@@ -20,24 +20,34 @@
             // 提供初始化状态
             getInitialState(){
                 return {
-                    bool:false
+                    bool:false,
+                    search:""
                 }
             },
             render(){ 
                 return ( 
-                    <div className={this.state.bool?'weui-search-bar weui-search-bar_focusing':'weui-search-bar'} id="searchBar">
-                        <form className="weui-search-bar__form">
-                            <div className="weui-search-bar__box">
-                                <i className="weui-icon-search"></i>
-                                <input type="search" className="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" />
-                                <a href="javascript:" className="weui-icon-clear" id="searchClear"></a>
-                            </div>
-                            <label onClick={this.toggle} className="weui-search-bar__label" id="searchText">
-                                <i className="weui-icon-search"></i>
-                                <span>搜索</span>
-                            </label>
+                    <div>
+                        <div className={this.state.bool?'weui-search-bar weui-search-bar_focusing':'weui-search-bar'} id="searchBar">
+                            <form className="weui-search-bar__form">
+                                <div className="weui-search-bar__box">
+                                    <i className="weui-icon-search"></i>
+                                    <input ref="input" onChange={this.getIunputValue} value={this.state.search} type="search" className="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" />
+                                    <a href="javascript:" onClick={this.searchClear} className="weui-icon-clear" id="searchClear"></a>
+                                </div>
+                                <label onClick={this.toggle} className="weui-search-bar__label" id="searchText">
+                                    <i className="weui-icon-search"></i>
+                                    <span>搜索</span>
+                                </label>
+                            </form>
+                            <a href="javascript:" onClick={this.cancel} className="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+                        </div>
+                        <form>
+                                <label htmlFor="male">Male</label>
+                                <input type="radio" name="sex" id="male" />
+                                <br />
+                                <label htmlFor="female">Female</label>
+                                <input type="radio" name="sex" id="female" />
                         </form>
-                        <a href="javascript:" onClick={this.cancel} className="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
                     </div>
             )},
             toggle(){
@@ -46,11 +56,24 @@
                 this.setState({
                     bool:true
                 })
+                this.refs.input.focus()
+                console.log(this.refs.input)
             },
             cancel(){
                 this.setState({
                     bool:false
                 })
+            },
+            getIunputValue(event){
+                this.setState({
+                    search: event.target.value
+                })
+            },
+            searchClear(){
+                this.setState({
+                    search:""
+                })
+                this.refs.input.focus()
             }
         }) 
         ReactDOM.render(
