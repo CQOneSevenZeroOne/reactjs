@@ -1,7 +1,18 @@
-const React = require("react");
-const ReactDOM = require("react-dom");
+import ReactDOM from 'react-dom';
+import React from 'react'
+import { HashRouter as Router, Route, Link} from 'react-router-dom'
 import "weui";
-import Xheader from "./components/xheader.jsx";
-import Xsearch from "./components/xsearch.jsx";
-import Xfooter from "./components/xfooter.jsx";
-ReactDOM.render(<div><Xheader/><Xsearch/><Xfooter/></div>, document.querySelector("#app"))
+
+//选项卡组件
+import Xindex from "./components/tab/xindex.jsx";
+import Xdetail from "./components/tab/xdetail.jsx";
+
+ReactDOM.render(
+	<Router>
+		<div>
+			<Route path="/index" component={Xindex}></Route>
+			<Route path="/detail" component={Xdetail}></Route>
+		</div>
+	</Router>
+	,
+	document.querySelector("#app"))

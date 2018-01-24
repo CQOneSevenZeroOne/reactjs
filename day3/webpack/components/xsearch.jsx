@@ -29,13 +29,6 @@ export default class Xsearch extends React.Component {
         </form>
         <a href="javascript:" onClick={this.cancel} className="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
       </div>
-      <form>
-        <label htmlFor="male">Male</label>
-        <input type="radio" name="sex" id="male"/>
-        <br/>
-        <label htmlFor="female">Female</label>
-        <input type="radio" name="sex" id="female"/>
-      </form>
     </div>)
   }
   toggle() {
